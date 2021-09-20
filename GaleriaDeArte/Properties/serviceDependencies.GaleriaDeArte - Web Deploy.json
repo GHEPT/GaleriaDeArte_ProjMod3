@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/galeriadeartedbserver/databases/GaleriaDeArte_db2",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:Galeria",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
