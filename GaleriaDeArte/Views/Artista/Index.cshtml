@@ -1,0 +1,53 @@
+﻿@model IEnumerable<GaleriaDeArte.Models.Artista>
+
+@{
+    ViewData["Title"] = "Conheça os Artistas";
+}
+
+<h1>Conheça os Artistas</h1>
+
+<p>
+    <a asp-action="Create">Cadastrar Artista</a>
+</p>
+<table class="table table-secondary">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Patrimonio)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th class="text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Patrimonio)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Visualizar</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Atualizar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

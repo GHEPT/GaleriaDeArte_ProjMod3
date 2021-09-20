@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Leitura";
+}
+
+@model Obra
+
+<dt class="list-group-item active" aria-current="true">Visualizando Obra @Model.Id</dt>
+<br />
+
+<dl class="row">
+    <div class="card mb-3" style="max-width: 500px;">
+        <div class="row g-0">
+            <div class="col-md-10">
+                <img src="@Model.Imagem" class="img-fluid rounded-start" alt="">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">@Model.Nome</h4>
+                    <dt class="col-sm-5">@Html.DisplayNameFor(Model => Model.Id)</dt>
+                    <dd class="col-sm-12">@Html.DisplayFor(Model => Model.Id)</dd>
+
+                    <dt class="col-sm-5">@Html.DisplayNameFor(Model => Model.Autor)</dt>
+                    <dd class="col-sm-12">@Html.DisplayFor(Model => Model.Autor)</dd>
+
+                    <dt class="col-sm-5">@Html.DisplayNameFor(Model => Model.Descricao)</dt>
+                    <dd class="col-sm-12">@Html.DisplayFor(Model => Model.Descricao)</dd>
+
+                    <dt class="col-sm-5">@Html.DisplayNameFor(Model => Model.Preco)</dt>
+                    <dd class="col-sm-12">@Html.DisplayFor(Model => Model.Preco)</dd>
+
+                    <dt class="col-sm-5">@Html.DisplayNameFor(Model => Model.Data)</dt>
+                    <dd class="col-sm-12">@Html.DisplayFor(Model => Model.Data)</dd>
+                </div>
+            </div>
+        </div>
+    </div>
+</dl>
+
+@if (Model.Lances.Count > 0)
+{
+    <h2>Lances</h2>
+    @foreach (Lance l in Model.Lances)
+    {
+        <p><strong>@Html.DisplayFor(a => l.Nome)</strong> | R$ @Html.DisplayFor(a => l.Proposta) milhões</p>
+    }
+}

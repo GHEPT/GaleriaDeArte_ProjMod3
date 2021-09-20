@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Nova Obra";
+}
+@model Obra
+
+<h1>Insira uma nova obra</h1>
+
+<div class="row">
+    <form class="col-md-4" asp-action="Create">
+        <div class="form-group">
+            <label asp-for="Imagem" class="control-label"></label>
+            <input asp-for="Imagem" class="form-control"/>
+            <span class="text-warning" asp-validation-for="Imagem"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nome" class="control-label"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span class="text-warning" asp-validation-for="Nome"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Autor" class="control-label"></label>
+            <input asp-for="Autor" class="form-control" />
+            <span class="text-warning" asp-validation-for="Autor"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Descricao" class="control-label"></label>
+            <input asp-for="Descricao" class="form-control" />
+            <span class="text-warning" asp-validation-for="Descricao"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Preco" class="control-label"></label>
+            <input asp-for="Preco" class="form-control" />
+            <span class="text-warning" asp-validation-for="Preco"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Data" class="control-label"></label>
+            <input asp-for="Data" class="form-control" />
+            <span class="text-warning" asp-validation-for="Data"></span>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-danger" type="submit" value="Enviar"/>
+            <a class="btn btn-info" asp-controller="Obra" asp-action="Index">Voltar</a>
+
+        </div>
+    </form>
+</div>

@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Lances"; /* Mantive aqui para ficar bonito no nome da aba*/
+}
+
+@model List<Lance>
+
+<h1 class="shadow-lg"> Lista de lances</h1>
+<br />
+<form class="row">
+    <div>
+        <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Index">Voltar</a>
+        <a class="btn btn-outline-danger" asp-controller="Lance" asp-action="Create">Novo Lance</a>
+    </div>
+</form>
+<br />
+
+
+<table class="table table-secondary">
+    <thead>
+        <tr>
+            <th class="text-center">@Html.DisplayNameFor(Model => Model.First().Id)</th>
+            <th class="text-center">@Html.DisplayNameFor(Model => Model.First().Nome)</th>
+            <th class="text-center">@Html.DisplayNameFor(Model => Model.First().CPF)</th>
+            <th class="text-center">@Html.DisplayNameFor(Model => Model.First().Obra.Nome)</th>
+            <th class="text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Lance lance in Model)@*O Model aqui é outra forma de mostrar os dados, ao invés da ViewBag*@
+        {
+            <tr>
+                <td class="text-center">@Html.DisplayFor(Model => lance.Id)</td> @*mostre como deve ser apresentado o atributo conforme o meu model*@
+                <td class="text-center">@Html.DisplayFor(Model => lance.Nome)</td>
+                <td class="text-center">@Html.DisplayFor(Model => lance.CPF)</td>
+                <td class="text-center">@Html.DisplayFor(Model => lance.Obra.Nome)</td>
+                <td>
+
+                    <a asp-controller="Lance" asp-action="Read" asp-route-id="@lance.Id">Visualizar</a>
+                    <span> | </span>
+                    <a asp-controller="Lance" asp-action="Update" asp-route-id="@lance.Id">Atualizar</a>
+                    <span> | </span>
+                    <a asp-controller="Lance" asp-action="Confirm" asp-route-id="@lance.Id">Deletar</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Novo Lance";
+}
+@model Lance
+
+<h1>Insira uma nova obra</h1>
+
+<div class="row">
+    <form class="col-md-4" asp-action="Create">
+        <div class="form-group">
+            <label asp-for="Nome" class="control-label"></label>
+            <input asp-for="Nome" class="form-control"/>
+            <span class="text-warning" asp-validation-for="Nome"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CPF" class="control-label"></label>
+            <input asp-for="CPF" class="form-control" />
+            <span class="text-warning" asp-validation-for="CPF"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Proposta" class="control-label"></label>
+            <input asp-for="Proposta" class="form-control" />
+            <span class="text-warning" asp-validation-for="Proposta"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ObraId" class="control-label"></label>
+            <select asp-for="ObraId" class="form-control" asp-items="ViewBag.ListaDeObras">
+                <option value=""> -- Selecione -- </option>
+            </select>
+
+            <span class="text-warning" asp-validation-for="ObraId"></span>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-danger" type="submit" value="Enviar"/>
+            <a class="btn btn-info" asp-controller="Lance" asp-action="Index">Voltar</a>
+
+        </div>
+    </form>
+</div>

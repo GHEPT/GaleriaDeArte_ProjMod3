@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Atualizar";
+}
+
+@model Lance
+
+<h4 class="list-group-item active" aria-current="true">Atualizar Lance</h4>
+<br />
+
+<div class="row">
+    <form class="col-md-4" asp-action="Update">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Nome" class="control-label"></label>
+            <input asp-for="Nome" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="CPF" class="control-label"></label>
+            <input asp-for="CPF" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Proposta" class="control-label"></label>
+            <input asp-for="Proposta" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ObraId" class="control-label"></label>
+            <select asp-for="ObraId" class="form-control" asp-items="ViewBag.ListaDeObras">
+                <option value=""> -- Selecione -- </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-outline-danger" type="submit" value="Atualizar" />
+            <a class="btn btn-outline-dark" asp-controller="Lance" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>

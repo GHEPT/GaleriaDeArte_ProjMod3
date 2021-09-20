@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Atualizar";
+}
+
+@model Obra
+
+<h4>Atualizar Obra</h4>
+
+<div class="row">
+    <form class="col-md-4" asp-action="Update">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Imagem" class="control-label"></label>
+            <input asp-for="Imagem" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Nome" class="control-label"></label>
+            <input asp-for="Nome" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Autor" class="control-label"></label>
+            <input asp-for="Autor" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Descricao" class="control-label"></label>
+            <input asp-for="Descricao" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Preco" class="control-label"></label>
+            <input asp-for="Preco" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Data" class="control-label"></label>
+            <input asp-for="Data" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input class="btn btn-outline-danger" type="submit" value="Atualizar" />
+            <a class="btn btn-outline-dark" asp-controller="Obra" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>

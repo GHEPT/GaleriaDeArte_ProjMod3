@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Deletar";
+}
+
+<h1 class="bg-danger text-center">@ViewBag.confirm</h1>
+
+<a class="btn btn-outline-danger text-center" asp-controller="Obra" asp-action="Delete" asp-route-id="@ViewBag.obra">Deletar</a>
+<a class="btn btn-outline-dark" asp-controller="Obra" asp-action="Read">Voltar</a>
+
+

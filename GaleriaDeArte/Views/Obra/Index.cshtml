@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Obras"; /* Mantive aqui para ficar bonito no nome da aba*/
+}
+
+@model List<Obra>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<h1 class="shadow-lg"> Acervo de obras</h1>
+<br />
+<form class="row">
+    <div class="col col-md-4">
+        <input type="text" class="form-control" name="busca" placeholder="Pesquisar por nome" />
+        &nbsp; &nbsp;
+        <br />
+        <select name="service" class="form-select" aria-label="Default select example">
+            <option value="sql">Banco de Dados - SQL</option>
+            <option value="static">Dados Estáticos</option>
+            <option value="both">Ambos</option>
+        </select>
+<br />
+    </div>
+    <div class="col col-md-8">
+        <button type="submit" class="btn btn-outline-dark">Pesquisar</button>
+        <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Index">Voltar</a>
+
+
+        @if (ViewBag.ordenar == true)
+        {
+            <a asp-action="Index" class="btn btn-outline-primary">Reordenar por Id</a>
+        }
+        else
+        {
+            <a href="/Obra/Index?ordenar=true" class="btn btn-outline-info">Ordenar Títulos</a>
+        }
+
+        
+    </div>
+</form>
+<br />
+
+@if (ViewBag.total < ViewBag.inicial)
+{
+    <p class="text-center alert alert-danger" role="alert">Obra @ViewBag.info deletada com sucesso!</p>
+}
+
+
+@if (@ViewBag.id > 10)
+{
+    <div class="alert alert-success" role="alert">Obra cadastrada com sucesso!</div>
+}
+
+
+
+<table class="table table-secondary">
+    <thead>
+        <tr>
+            <th class="text-center">@Html.DisplayNameFor(Model => Model.First().Id)</th>
+            <th class="text-center">@Html.DisplayNameFor(Model => Model.First().Nome)</th>
+            <th class="text-center">@Html.DisplayNameFor(Model => Model.First().Data)</th>
+            <th class="text-center">@Html.DisplayNameFor(Model => Model.First().Preco)</th>
+            <th class="text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Obra obra in Model)@*O Model aqui é outra forma de mostrar os dados, ao invés da ViewBag*@
+        {
+            string qtdLance = obra.Lances.Count > 0 ? $"{obra.Lances.Count}" : "";
+            <tr>
+                <td class="text-center">@Html.DisplayFor(Model => obra.Id)</td> @*mostre como deve ser apresentado o atributo conforme o meu model*@
+                <td class="text-center">@Html.DisplayFor(Model => obra.Nome)<span class="badge bg-warning text-dark ml-2">@qtdLance</span></td>
+                <td class="text-center">@Html.DisplayFor(Model => obra.Data)</td>
+                <td class="text-center">@Html.DisplayFor(Model => obra.Preco)</td>
+                <td>
+                    @if (ViewBag.service == "sql")
+                    {
+                        <a asp-controller="Obra" asp-action="Read" asp-route-id="@obra.Id">Visualizar</a>
+                        <span> | </span>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a asp-controller="Obra" asp-action="Create">Criar</a><span> | </span>
+                            <a asp-controller="Obra" asp-action="Update" asp-route-id="@obra.Id">Atualizar</a>
+                            <span> | </span>
+                            <a asp-controller="Obra" asp-action="Confirm" asp-route-id="@obra.Id">Deletar</a>
+                        }
+                        else
+                        {
+                            <a class="text-black-50" asp-area="Identity" asp-page="/Account/Login">Logue para edições</a>
+                        }
+
+                    }
+                    else
+                    {
+                        <p>Não há ações para esta fonte de dados!</p>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="p-3 mb-2 bg-dark text-white">Quantidade de obras: <span class="badge badge-success text-light"><strong>@ViewBag.total</strong></span></div>
+<div class="p-3 mb-2 bg-dark text-white">Valor total das obras: <span class="badge badge-success text-light"><strong>R$ @ViewBag.valortotal milhões</strong></span></div>
+<div class="p-3 mb-2 bg-dark text-white">Obra mais recente: <span class="badge badge-success text-light"><strong>@ViewBag.maisAntiga</strong></span></div>
+<div class="p-3 mb-2 bg-dark text-white">Obra mais cara: <span class="badge badge-success text-light"><strong>@ViewBag.maisCara</strong></span></div>
+
+
